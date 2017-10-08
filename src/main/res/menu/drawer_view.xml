@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.MainActivity">
+
+    <group
+        android:id="@+id/grp1"
+        android:checkableBehavior="single">
+        <item
+
+            android:id="@+id/it_language"
+            android:icon="@drawable/ic_language_black_24dp"
+            android:textColor="@android:color/white"
+            android:title="@string/language"
+            />
+
+        <item
+            android:id="@+id/it_contact"
+            android:icon="@drawable/ic_icontacts"
+            android:textColor="@android:color/white"
+            android:title="@string/contact_us"
+            />
+        <item
+            android:id="@+id/it_about"
+            android:checked="true"
+            android:icon="@drawable/ic_info"
+            android:textColor="@android:color/white"
+            android:title="@string/about"
+            />
+        <item
+            android:id="@+id/it_logout"
+            android:icon="@drawable/ic_logout"
+            android:textColor="@android:color/white"
+            android:title="@string/logout"
+
+            />
+    </group>
+
+
+</menu>

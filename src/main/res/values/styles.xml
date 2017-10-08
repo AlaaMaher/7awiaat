@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/petrol</item>
+        <item name="colorPrimaryDark">@color/material_blue_grey_900</item>
+        <item name="colorAccent">@color/material_amber_900</item>
+        <item name="colorPrimary">#fff</item>
+        <item name="colorPrimaryDark">#212121</item>
+        <item name="colorAccent">@color/orange</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="spinnerStyle">@style/holoSpinner</item>
+    </style>
+
+
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#fff</item>
+        <item name="colorPrimaryDark">#fff</item>
+        <item name="colorAccent">#0d3046</item>
+
+    </style>
+
+    <style name="SendOrder" parent="AppTheme">
+
+        <item name="colorAccent">#0d3046</item>
+        <item name="colorControlNormal">#0d3046</item>
+        <item name="colorControlActivated">#0d3046</item>
+        <item name="colorControlHighlight">#0d3046</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="holoSpinner" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:background">@drawable/spinner_background</item>
+
+    </style>
+
+
+
+</resources>

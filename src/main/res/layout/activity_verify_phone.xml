@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="verfiyPhone"
+            type="com.example.dev.hawaiat.viewModels.VerifyPhoneViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context="com.example.dev.hawaiat.views.VerifyPhone">
+
+        <ImageView
+            android:id="@+id/imageViewReg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:background="#000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/enter_code"
+            android:textAlignment="center"
+            android:textColor="#0d3046"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewReg" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layoutDirection="ltr"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:layout_editor_absoluteX="0dp">
+
+            <EditText
+                android:id="@+id/pin1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:text="@={verfiyPhone.pin1}"
+                android:textAlignment="center"
+                android:textColor="#0F3D5E"
+                android:textSize="20sp"
+                android:textStyle="bold"
+
+                app:editText="@{verfiyPhone.pin1}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pin2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/pin2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:text="@={verfiyPhone.pin2}"
+                android:textAlignment="center"
+                android:textColor="#0F3D5E"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:editText="@{verfiyPhone.pin2}"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pin3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pin1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <EditText
+                android:id="@+id/pin3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:text="@={verfiyPhone.pin3}"
+                android:textAlignment="center"
+                android:textColor="#0F3D5E"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:editText="@{verfiyPhone.pin3}"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pin4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pin2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/pin4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:text="@={verfiyPhone.pin4}"
+                android:textAlignment="center"
+                android:textColor="#0F3D5E"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:editText="@{verfiyPhone.pin4}"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pin5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pin3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <EditText
+                android:id="@+id/pin5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:text="@={verfiyPhone.pin5}"
+                android:textAlignment="center"
+                android:textColor="#0F3D5E"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:editText="@{verfiyPhone.pin5}"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pin6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pin4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <EditText
+                android:id="@+id/pin6"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:text="@={verfiyPhone.pin6}"
+                android:textAlignment="center"
+                android:textColor="#0F3D5E"
+                android:textSize="20sp"
+
+                android:textStyle="bold"
+                app:editText="@{verfiyPhone.pin6}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pin5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_resend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_refresh"
+            android:onClick="@{verfiyPhone::resendCode}"
+            android:text="@string/resende_code"
+            android:textColor="#0F3D5E"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:editText="@{verfiyPhone.pin5}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+        <Button
+            android:id="@+id/verify_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/login_button_background"
+            android:onClick="@{verfiyPhone::onLogin}"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_resend"
+            app:layout_constraintVertical_bias="0.36" />
+
+        <TextView
+            android:id="@+id/tv_contDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@={verfiyPhone.time}"
+            android:textColor="#0F3D5E"
+            android:textDirection="ltr"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_resend"
+            app:layout_constraintStart_toEndOf="@+id/tv_resend"
+            app:layout_constraintTop_toTopOf="@+id/tv_resend"
+            app:layout_constraintVertical_bias="0.83" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

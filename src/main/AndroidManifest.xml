@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dev.hawaiat">
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:anyDensity="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".views.SendOrder$Containers1">
+        </activity>
+        <activity
+            android:name="views.ProfileScreen"
+            android:label="@string/profile" />
+        <activity
+            android:name=".views.LoginOrReg"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+            <activity android:name=".views.ProfileScreen"
+                android:label="@string/profile" />
+        <activity
+            android:name=".views.ChangePassword"
+            android:label="@string/change_password" />
+        <activity
+            android:name=".views.Terms"
+            android:label="@string/terms" />
+        <activity
+            android:name=".views.AboutUs"
+            android:label="@string/about_us" />
+        <activity
+            android:name=".views.ContactUs"
+            android:label="@string/contact_us" />
+        <activity
+            android:name="views.ForgetPassword"
+            android:label="@string/app_name" />
+        <activity android:name=".views.MainActivity" />
+        <activity android:name=".views.Resetpassword" />
+
+        <activity
+            android:name=".views.SplashActivity"
+            android:theme="@style/AppTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".views.LoginScreen"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".views.RegisterActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".views.VerifyPhone"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.HomeScreen" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".views.SendOrder"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait"
+            android:theme="@style/SendOrder" />
+        <activity
+            android:name=".views.ContactDeliagator"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.RatingScreen"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.DoYouServed"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.ChangeLanguage"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:screenOrientation="portrait" />
+        <activity android:name=".views.Container_Detail" />
+
+        <activity
+            android:name=".views.ForgetPassword"
+            android:screenOrientation="portrait" />
+
+    </application>
+
+</manifest>

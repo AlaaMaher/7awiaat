@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/search_title"
+        app:showAsAction="ifRoom|collapseActionView">
+        <menu>
+            <item
+                android:id="@id/card_view_menu"
+                android:checkable="false"
+                android:title="@string/containers_company"
+                app:showAsAction="never" />
+            <item
+                android:id="@id/card_view_menu"
+                android:checkable="false"
+                android:title="@string/containers_size"
+                app:showAsAction="never" />
+            <item
+                android:id="@id/card_view_menu"
+                android:checkable="false"
+                android:title="@string/best_price"
+                app:showAsAction="never" />
+            <item
+                android:id="@id/card_view_menu"
+                android:checkable="false"
+                android:title="@string/all"
+                app:showAsAction="never" />
+
+
+        </menu>
+
+
+    </item>
+
+
+</menu>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_password">New Password</string>
+    <string name="Confirm_password">Confirm New Password</string>
+    <string name="save_btn">SAVE</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_name" translatable="false">Hawaiat</string>
+    <string name="spinner_Title">Language</string>
+    <string name="Arabic">Arabic</string>
+    <string name="English">English</string>
+    <string name="Urdu">Urdu</string>
+    <string name="Login">Login</string>
+    <string name="Registration">Registeration</string>
+    <string name="SinUpas"><u>Sign Up as Hawiat Company </u></string>
+    <string name="pass">password</string>
+    <string name="remember">remember me ?</string>
+    <string name="login">Login</string>
+    <string name="forget">forget password ?</string>
+    <string name="agree">I agree to the terms and conditions</string>
+    <string name="register">Register</string>
+    <string name="enter_code">Enter Verification Code</string>
+    <string name="resende_code">Resend Code</string>
+    <string name="language">Language</string>
+    <string name="about">about</string>
+    <string name="logout">logout</string>
+    <string name="tramim">rest</string>
+    <string name="nfayiat">trash</string>
+    <string name="container_size">Container Size 10 yard</string>
+    <string name="container_capacity">Container Size</string>
+    <string name="container_price">Price</string>
+    <string name="rail">SR</string>
+    <string name="contact_deligator">Contact Delegator Company</string>
+    <string name="yard">yard</string>
+    <string name="contianer_number">Number of containers required</string>
+    <string name="location">Location</string>
+    <string name="time_deleviry">Delivery Time</string>
+    <string name="days">Days</string>
+    <string name="hours">Hours</string>
+    <string name="send_order">Send</string>
+    <string name="Contact_delegates">To communicate with the company delegates</string>
+    <string name="we_hope">We hope that you will appreciate the company\'s rating for service</string>
+    <string name="company_name">Fatih Company</string>
+    <string name="rate">Rating</string>
+    <string name="rate_button"> Rate </string>
+    <string name="did_you_servied">Have you been served by this company?</string>
+    <string name="Yes">yes</string>
+    <string name="No">No</string>
+    <string name="send_order1">Send Order</string>
+
+
+    <string-array name="spinnerItems">
+        <item>@string/spinner_Title</item>
+        <item>@string/Arabic</item>
+        <item>@string/English</item>
+        <item>@string/Urdu</item>
+    </string-array>
+
+    <string name="send">Send</string>
+    <string name="regsuccess">Register Successfull</string>
+    <string name="regbefore">This phone is registered before</string>
+    <string name="enterAll">Please Enter All Fields</string>
+    <string name="phoneVerified">phone has been verified</string>
+    <string name="wrongCode">Invalid code or wrong code</string>
+    <string name="userNotReg">No registered profile found.</string>
+    <string name="wrongPhone">Phone is not valid. !</string>
+    <string name="wrongPassword">Password is not valid !</string>
+    <string name="resendSuccess"> code have been sent to the phone.!</string>
+    <string name="unregPhone">UnRegistered phone</string>
+    <string name="phoneAlreadyVerfied">This phone is already verified</string>
+    <string name="loginSuc">login success</string>
+    <string name="rateSucc">Success Rating</string>
+    <string name="invalidRate">Invalid Rating</string>
+
+
+    <string name="profile">Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="confirm_new_password">Confirm_new_password</string>
+    <string name="terms">Terms and Conditions</string>
+    <string name="dummy_text">Bromium peregrinationes.Try shakeing curry mashed up with maple syrup, brushed with dill.Doubloons of a sunny amnesty, view the booty! The ugly ship never contacts the space suit. Everything we do is connected with thought: uniqueness, ascension, attitude, blessing. </string>
+    <string name="about_us">About Us</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="email">Email</string>
+    <string name="email_ad" translatable="false">magdsoft@gmail.com</string>
+    <string name="phone">Phone Number</string>
+    <string name="number1" translatable="false">012214874851854</string>
+    <string name="number2" translatable="false">021248946549849</string>
+
+    <string name="containers">Containers</string>
+    <string name="containers_company">Containers Company</string>
+    <string name="containers_size">Size Of Containers</string>
+
+    <string name="sizes">Container 10 Yard</string>
+    <string name="search_title">Search</string>
+    <string name="best_price">Best Price</string>
+    <string name="all">All</string>
+    <string name="search">Search</string>
+    <string name="title_activity_place_picker">Map</string>
+</resources>
