@@ -1,5 +1,6 @@
 package com.example.dev.hawaiat.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,36 +28,28 @@ public class ContactDeliagator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_deliagator);
 
+        phones = (ArrayList<String>) getIntent().getSerializableExtra("phones");
 
-        phones.add("01090885823");
-        phones.add("01111046148");
-        phones.add("01111046148");
+        Toast.makeText(ContactDeliagator.this, " phone " + phones.get(0), Toast.LENGTH_SHORT).show();
 
-        phones.add("01090885823");
-        phones.add("01111046148");
-        phones.add("01111046148");
 
-        phones.add("01090885823");
-        phones.add("01111046148");
-        phones.add("01111046148");
+        if (null != phones) {
+            myrcycler = (RecyclerView) findViewById(R.id.mRecyclerView);
+            myrcycler.setHasFixedSize(true);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            myrcycler.setLayoutManager(layoutManager);
+            myAdapter = new DeligatorRecyclerAdapter(ContactDeliagator.this, phones);
+            myrcycler.setAdapter(myAdapter);
 
-        phones.add("01090885823");
-        phones.add("01111046148");
-        phones.add("01111046148");
 
-        myrcycler = (RecyclerView) findViewById(R.id.mRecyclerView);
-        myrcycler.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        myrcycler.setLayoutManager(layoutManager);
-        myAdapter = new DeligatorRecyclerAdapter(ContactDeliagator.this, phones);
-        myrcycler.setAdapter(myAdapter);
+        }
 
         mRating = (TextView) findViewById(R.id.we_hope);
-
         mRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(ContactDeliagator.this, " Rating Activty ", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ContactDeliagator.this, RatingScreen.class));
             }
         });
 

@@ -104,7 +104,7 @@ public class DeligatorRecyclerAdapter extends RecyclerView.Adapter<DeligatorRecy
 
         private void log() {
             LogRequest logRequest = new LogRequest();
-            SharedPreferences sharedPreferences = ctx.getSharedPreferences(LoginScreen.API_TOKEN_SHARED, ctx.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = ctx.getSharedPreferences(LoginScreen.HAWAIT_SHARED_PREFRENSE, ctx.MODE_PRIVATE);
             String api_Token = sharedPreferences.getString(LoginScreen.API_TOKEN, "");
             logRequest.setApiToken(api_Token);
 

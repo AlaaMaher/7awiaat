@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.dev.hawaiat.R;
 import com.example.dev.hawaiat.views.SendOrder;
+import com.example.dev.hawaiat.webServices.responses.CompanyProfile;
+import com.example.dev.hawaiat.webServices.responses.Container;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,17 +25,19 @@ import java.util.List;
 public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecyclerAdapter.MyViewHolder> {
 
     private String m;
-    private List<String> containersImages;
-    private List<String> containerPrice;
-    private List<String> containerCapacity;
+   // private List<String> containersImages;
+//    private List<String> containerPrice;
+ //   private List<String> containerCapacity;
+
+    private List<Container> container;
+    private CompanyProfile companyProfile;
 
     private Context ctx;
 
-    public CompanyRecyclerAdapter(Context ctx, List<String> containersImages, List<String> containerPrice, List<String> containerCapacity) {
+    public CompanyRecyclerAdapter(Context ctx, List<Container> container,CompanyProfile companyProfile) {
         this.ctx = ctx;
-        this.containersImages = containersImages;
-        this.containerPrice = containerPrice;
-        this.containerCapacity = containerCapacity;
+        this.container=container;
+        this.companyProfile=companyProfile;
 
     }
 
@@ -48,16 +52,20 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
     public void onBindViewHolder(CompanyRecyclerAdapter.MyViewHolder holder, int position) {
 
 
-        m = ctx.getString(R.string.container_capacity) + " " + containerCapacity.get(position) + " " + ctx.getString(R.string.yard) + "\n" + ctx.getString(R.string.container_price) + " " + containerPrice.get(position) + " " + ctx.getString(R.string.rail);
+        m = ctx.getString(R.string.container_capacity) + " " + container.get(position).getCapacity() + " " + ctx.getString(R.string.yard) + "\n" + ctx.getString(R.string.container_price) + " " + container.get(position).getCost() + " " + ctx.getString(R.string.rail);
         holder.mTextView.setText(m);
-        Picasso.with(ctx).load(containersImages.get(position)).into(holder.mImagView);
+      //  Picasso.with(ctx).load(container.get(position).).into(holder.mImagView);
+        if(companyProfile.getImages()!=null) {
+            Picasso.with(ctx).load(companyProfile.getImages().get(position)).into(holder.mImagView);
+        }
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return containersImages.size();
+        return container.size();
     }
 
 
@@ -77,9 +85,17 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<CompanyRecycler
             mButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+
+
                     int posion = getAdapterPosition();
                     Intent intent = new Intent(ctx, SendOrder.class);
-                    intent.putExtra("ContainerCapacity", containerCapacity.get(posion));
+                    intent.putExtra("ContainerCapacity", container.get(posion).getCapacity());
+                    intent.putExtra("ContainerCost", container.get(posion).getCost());
+                    intent.putExtra("ContainerColor", container.get(posion).getColor());
+                    intent.putExtra("ContainerType", container.get(posion).getType());
+                    intent.putExtra("PhoneNumber",companyProfile.getPhone());
+
                     ctx.startActivity(intent);
                 }
 

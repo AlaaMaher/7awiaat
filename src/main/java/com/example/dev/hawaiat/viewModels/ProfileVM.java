@@ -1,6 +1,7 @@
 package com.example.dev.hawaiat.viewModels;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.dev.hawaiat.BR;
 import com.example.dev.hawaiat.models.Data;
 import com.example.dev.hawaiat.models.Profile;
+import com.example.dev.hawaiat.views.LoginScreen;
 import com.example.dev.hawaiat.webServices.RetrofitWebService;
 import com.example.dev.hawaiat.webServices.responses.UpdateInfoResponse;
 
@@ -78,6 +80,8 @@ public class ProfileVM extends BaseObservable {
 
     public void onSavedClicked(View view) {
 
+        SharedPreferences sharedPreferences = context.getSharedPreferences(LoginScreen.HAWAIT_SHARED_PREFRENSE,context.MODE_PRIVATE);
+        String api_Token = (String) sharedPreferences.getString(LoginScreen.API_TOKEN, "");
         MultipartBody.Part fileToUpload = null;
         if (getUserPhoto() != null && getUserPhoto().length() > 0) {
             File file = new File(getUserPhoto());
@@ -86,7 +90,7 @@ public class ProfileVM extends BaseObservable {
         }
 
         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), getUserName());
-        RequestBody apiToken = RequestBody.create(MediaType.parse("text/plain"), "4EN93W8g842d6fYsiBw6xQJIpnGw3MwCna2dClHT0TirD0eG7LbzkfmKJSk0otni4X49Ll");
+        RequestBody apiToken = RequestBody.create(MediaType.parse("text/plain"), api_Token);
         RequestBody phone = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(getUserPhone()));
 
         RetrofitWebService.getService().getUpdateInfoFun(fileToUpload, apiToken, name, phone).enqueue(new Callback<UpdateInfoResponse>() {
@@ -118,7 +122,7 @@ public class ProfileVM extends BaseObservable {
 
             @Override
             public void onFailure(Call<UpdateInfoResponse> call, Throwable t) {
-                Toast.makeText(context, "fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "fail"+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context="com.example.dev.hawaiat.views.Container_Detail">
+    tools:context="com.example.dev.hawaiat.views.Company_Detail">
 
     <include
         android:id="@+id/include3"
@@ -39,7 +39,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
-        android:text="شركة الفتح"
+
 
         android:textColor="#0D3046"
         android:textSize="18sp"
@@ -82,14 +82,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.507" />
 
-        <RatingBar
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/rating_bar"
             android:layout_width="238dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:numStars="5"
-            android:rating="3"
+
             android:stepSize="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView7"

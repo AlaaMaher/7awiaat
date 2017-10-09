@@ -7,9 +7,9 @@ package com.example.dev.hawaiat.webServices.request;
 public class CompanyProfileRequest {
 
     private String apiToken;
-    private String companyID;
-    private String longitude;
-    private String latitude;
+    private int companyID;
+    private double longitude;
+    private double latitude;
 
     public String getApiToken() {
         return apiToken;
@@ -19,27 +19,27 @@ public class CompanyProfileRequest {
         this.apiToken = apiToken;
     }
 
-    public String getCompanyID() {
+    public int getCompanyID() {
         return companyID;
     }
 
-    public void setCompanyID(String companyID) {
+    public void setCompanyID(int companyID) {
         this.companyID = companyID;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 }

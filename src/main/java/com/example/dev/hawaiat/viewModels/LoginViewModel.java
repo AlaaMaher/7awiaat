@@ -1,6 +1,7 @@
 package com.example.dev.hawaiat.viewModels;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.dev.hawaiat.BR;
 import com.example.dev.hawaiat.models.User;
+import com.example.dev.hawaiat.views.Resetpassword;
 import com.example.dev.hawaiat.webServices.RetrofitWebService;
 import com.example.dev.hawaiat.webServices.request.LoginRequest;
 import com.example.dev.hawaiat.webServices.responses.LoginResponse;
@@ -18,6 +20,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Created by medo on 15-Sep-17.
+ */
+//------- this is mine =============================================
 public class LoginViewModel extends BaseObservable {
 
     private final ObservableField<User> mTaskObservable = new ObservableField<>();
@@ -27,13 +33,13 @@ public class LoginViewModel extends BaseObservable {
     public LoginViewModel(Context ctx) {
         this.ctx = ctx;
         User user = new User();
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences("isChecked", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences=ctx.getSharedPreferences("isChecked", Context.MODE_PRIVATE);
 
-        if (sharedPreferences.getBoolean("isChec", false)) {
-            user.setChecked(true);
-            user.setPhoneNamber(sharedPreferences.getString("phone", ""));
-            user.setPassword(sharedPreferences.getString("pass", ""));
-        }
+    if(sharedPreferences.getBoolean("isChec", false)) {
+        user.setChecked(true);
+        user.setPhoneNamber(sharedPreferences.getString("phone",""));
+        user.setPassword(sharedPreferences.getString("pass",""));
+    }
         mTaskObservable.set(user);
 
     }
@@ -79,26 +85,28 @@ public class LoginViewModel extends BaseObservable {
         User user = mTaskObservable.get();
         user.setChecked(checked);
         notifyPropertyChanged(BR.checked);
+
+
     }
 
     private void vailedatCheck() {
 
         User user = mTaskObservable.get();
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences("isChecked", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences sharedPreferences=ctx.getSharedPreferences("isChecked", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
         if (user.isChecked()) {
             Toast.makeText(ctx, " is checked ", Toast.LENGTH_SHORT).show();
 
-            editor.putString("phone", getMhoneNumber());
-            editor.putString("pass", getMassword());
-            editor.putBoolean("isChec", true);
+            editor.putString("phone",getMhoneNumber());
+            editor.putString("pass",getMassword());
+            editor.putBoolean("isChec",true);
             editor.commit();
 
 
-        } else {
-            editor.putString("phone", "");
-            editor.putString("pass", "");
-            editor.putBoolean("isChec", false);
+        }else{
+            editor.putString("phone","");
+            editor.putString("pass","");
+            editor.putBoolean("isChec",false);
             editor.commit();
         }
 
@@ -108,11 +116,12 @@ public class LoginViewModel extends BaseObservable {
 
         if (getMhoneNumber() == null) {
             Toast.makeText(ctx, " Please Enter phone number ", Toast.LENGTH_SHORT).show();
-        } else if (getMassword() == null) {
+        }
+       else if (getMassword() == null) {
             Toast.makeText(ctx, " Please Enter password ", Toast.LENGTH_SHORT).show();
-        } else if (getMassword().length() < 5) {
+        } else if (getMassword().length() <5) {
             Toast.makeText(ctx, " Password is too Short ", Toast.LENGTH_SHORT).show();
-        } else {
+        }  else {
             //Intent intent = new Intent(ctx, HomeScreen.class);
             //ctx.startActivity(intent);
 
@@ -123,13 +132,13 @@ public class LoginViewModel extends BaseObservable {
     }
 
     private void login() {
-        SharedPreferences sharedPreferences = ctx.getSharedPreferences("EmailAndPaswword", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("phone", getMhoneNumber());
-        editor.putString("pass", getMassword());
+        SharedPreferences sharedPreferences=ctx.getSharedPreferences("PhoneAndPaswword", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("phone",getMhoneNumber());
+        editor.putString("pass",getMassword());
         editor.commit();
 
-        final LoginRequest loginRequest = new LoginRequest();
+        final LoginRequest loginRequest=new LoginRequest();
         loginRequest.setPhone(getMhoneNumber());
         loginRequest.setPassword(getMassword());
 
@@ -138,50 +147,56 @@ public class LoginViewModel extends BaseObservable {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
-                if (response.body().getStatus() == 200) {
+                if(response.body().getStatus()==200){
 
 
-                    LoginResponse loginResponse = response.body();
+                    LoginResponse loginResponse=response.body();
                     ((OnPassinData) ctx).onPassingData(loginResponse);
 
 
-                } else if (response.body().getStatus() == 403) {
+                }else if(response.body().getStatus()==403){
                     Toast.makeText(ctx, " Invalid request, because of missing requirements. ", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 404) {
+                }else if(response.body().getStatus()==404){
                     Toast.makeText(ctx, " Unknown error ", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 405) {
+                }else if(response.body().getStatus()==405){
                     Toast.makeText(ctx, " Invalid phone or password ", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 406) {
+                }else if(response.body().getStatus()==406){
                     Toast.makeText(ctx, " This phone is not verified ", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 407) {
+                }else if(response.body().getStatus()==407){
                     Toast.makeText(ctx, " Non active acount ", Toast.LENGTH_SHORT).show();
 
                 }
+
+
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
 
-                Toast.makeText(ctx, " Connection failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, " Connection failed "+t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
 
     }
+    public interface OnPassinData{
 
-    public void onForget(View v) {
+       public void onPassingData(LoginResponse loginResponse);
+
+    }
+
+    public void onForget(View v){
 
         Toast.makeText(ctx, " go to forget screen ", Toast.LENGTH_SHORT).show();
+
+        Intent intent=new Intent(ctx, Resetpassword.class);
+        ctx.startActivity(intent);
+
     }
 
     private void vailidatePassword() {
         User user = mTaskObservable.get();
-        // Toast.makeText(ctx, " hi password " + user.getPassword() + " email " + user.getPhoneNamber(), Toast.LENGTH_SHORT).show();
-    }
-
-    public interface OnPassinData {
-
-        public void onPassingData(LoginResponse loginResponse);
+       // Toast.makeText(ctx, " hi password " + user.getPassword() + " email " + user.getPhoneNamber(), Toast.LENGTH_SHORT).show();
 
     }
 }

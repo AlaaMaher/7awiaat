@@ -22,11 +22,14 @@ public class SherdLanguageClass extends Application {
     public static SharedPreferences.Editor editor;
     public static Locale mLocale;
     public Context context;
+    private LoginOrReg loginOrReg;
 
     public SherdLanguageClass(Context ctx) {
         this.context = ctx;
         mSharedPreferences = context.getSharedPreferences(LOCALE_PREFRENCE, Context.MODE_PRIVATE);
         editor = mSharedPreferences.edit();
+
+        loginOrReg=new LoginOrReg();
 
     }
 
@@ -49,7 +52,7 @@ public class SherdLanguageClass extends Application {
                 context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
 
                 LoginOrReg.updateTexts();
-
+               // loginOrReg.spinnerItem();
 
 
             } // This is your code

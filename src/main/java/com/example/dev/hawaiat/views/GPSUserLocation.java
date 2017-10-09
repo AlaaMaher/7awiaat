@@ -191,9 +191,9 @@ public class GPSUserLocation extends Service implements LocationListener {
     @Override
     public void onProviderEnabled(String provider) {
         Toast.makeText(mContext, " GPS is Eisabled ", Toast.LENGTH_SHORT).show();
-        getLocation();
+        //getLocation();
 
-        Toast.makeText(mContext, "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        //Toast.makeText(mContext, "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
 
     }
 

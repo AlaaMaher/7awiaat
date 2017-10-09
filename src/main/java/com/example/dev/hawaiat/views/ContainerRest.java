@@ -61,41 +61,26 @@ public class ContainerRest extends AppCompatActivity {
 
         btnShowPopup = (Button) findViewById(R.id.btncontainer);
 
-        GetCompaniesRequest getCompaniesRequest = new GetCompaniesRequest(apiToken, containerType);
-        RetrofitWebService.getService().getCompaniesfun(getCompaniesRequest).enqueue(new Callback<GetCompaniesResponse>() {
-            @Override
-            public void onResponse(Call<GetCompaniesResponse> call, Response<GetCompaniesResponse> response) {
-                Toast.makeText(ContainerRest.this, String.valueOf(response.body().getStatus()), Toast.LENGTH_SHORT).show();
-                companies = response.body().getCompanies();
-                adapter = new ContainersAdapter(ContainerRest.this, companies);
-                recyclerView.setAdapter(adapter);
 
-            }
-
-            @Override
-            public void onFailure(Call<GetCompaniesResponse> call, Throwable t) {
-
-            }
-        });
 
         List<Item> itemsList = new ArrayList<>();
         Item item = new Item();
-        item.setText("Container 10 Yard");
+        item.setText(String.valueOf(R.string.yard10));
         item.setImgUrl("https://s.cafebazaar.ir/1/icons/com.limatech.limagapp_512x512.png");
         itemsList.add(item);
 
         item = new Item();
-        item.setText("Container 40 Yard");
+        item.setText(String.valueOf(R.string.yard15));
         item.setImgUrl("https://s.cafebazaar.ir/1/icons/com.limatech.limagapp_512x512.png");
         itemsList.add(item);
 
         item = new Item();
-        item.setText("Container 20 Yard");
+        item.setText(String.valueOf(R.string.yard10));
         item.setImgUrl("https://s.cafebazaar.ir/1/icons/com.limatech.limagapp_512x512.png");
         itemsList.add(item);
 
         item = new Item();
-        item.setText("Container 80 Yard");
+        item.setText(String.valueOf(R.string.yard20));
         item.setImgUrl("https://s.cafebazaar.ir/1/icons/com.limatech.limagapp_512x512.png");
         itemsList.add(item);
 
@@ -109,8 +94,9 @@ public class ContainerRest extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 listPopup.show();
-
                 btnShowPopup.setText(R.string.containers_size);
+
+
             }
         });
 
@@ -118,6 +104,23 @@ public class ContainerRest extends AppCompatActivity {
             @Override
             public void onDismiss() {
                 btnShowPopup.setText(R.string.containers_company);
+
+                GetCompaniesRequest getCompaniesRequest = new GetCompaniesRequest(apiToken, containerType);
+                RetrofitWebService.getService().getCompaniesfun(getCompaniesRequest).enqueue(new Callback<GetCompaniesResponse>() {
+                    @Override
+                    public void onResponse(Call<GetCompaniesResponse> call, Response<GetCompaniesResponse> response) {
+                        Toast.makeText(ContainerRest.this, String.valueOf(response.body().getStatus()), Toast.LENGTH_SHORT).show();
+                        companies = response.body().getCompanies();
+                        adapter = new ContainersAdapter(ContainerRest.this, companies);
+                        recyclerView.setAdapter(adapter);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetCompaniesResponse> call, Throwable t) {
+
+                    }
+                });
             }
         });
 
@@ -177,7 +180,7 @@ public class ContainerRest extends AppCompatActivity {
 
 
     public class CustomAdapter extends ArrayAdapter<Item> {
-        List<Item> items;
+        List<Item> items=new ArrayList<>();
 
 
         public CustomAdapter(@NonNull Context context, int resource, @NonNull List<Item> objects) {
@@ -189,7 +192,7 @@ public class ContainerRest extends AppCompatActivity {
         @Override
         public View getView(final int pos, View view, ViewGroup viewGroup) {
             view = getLayoutInflater().inflate(R.layout.item_layout, null);
-            ImageView icon = (ImageView) view.findViewById(R.id.imageView);
+            ImageView icon = (ImageView) view.findViewById(R.id.ImageIcon);
             CheckBox checkBox = view.findViewById(R.id.checkBox);
 
             checkBox.setChecked(false);
@@ -197,7 +200,7 @@ public class ContainerRest extends AppCompatActivity {
             checkBox.setText(items.get(pos).getText());
 
             Picasso.with(view.getContext())
-                    .load(R.mipmap.ic_launcher)
+                    .load(R.drawable.logo1)
                     .into(icon);
 
             view.setOnClickListener(new View.OnClickListener() {

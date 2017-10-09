@@ -1,19 +1,14 @@
 package com.example.dev.hawaiat.views;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,12 +39,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.dev.hawaiat.views.Company_Detail.CompanyIDDherd;
+
 public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
     TextView tvPlaceDetails;
     TextView container_size;
-    EditText editText_location;
+    EditText editText_location,contianer_reguired;
     ImageView daysTop, daysBelow, hourTop, hourBelow;
     int days = 7, hours = 47;
     TextView dayText, hourText;
@@ -57,11 +54,23 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
     private GoogleApiClient mGoogleApiClient;
     private int PLACE_PICKER_REQUEST = 1;
     private ImageView imagePicker;
+   private String phoneNumber,containerZise,containerCost,containerColor,containerType;
+    StringBuilder stBuilder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_order);
+
+
+        //============================= get the company phone ==================================
+        phoneNumber=(String) getIntent().getStringExtra("PhoneNumber");
+        containerCost=(String) getIntent().getStringExtra("ContainerCost");
+        containerColor=(String) getIntent().getStringExtra("ContainerColor");
+        containerType=(String) getIntent().getStringExtra("ContainerType");
+
+
 
 
         imagePicker = (ImageView) findViewById(R.id.place_picker_image);
@@ -74,10 +83,11 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
         hourText = (TextView) findViewById(R.id.hours_text);
         send_button = (Button) findViewById(R.id.send_order);
         container_size = (TextView) findViewById(R.id.container_size);
+        contianer_reguired=(EditText)findViewById(R.id.contianer_reguired);
 
 
-        String m = (String) getIntent().getStringExtra("ContainerCapacity");
-        container_size.setText(getString(R.string.container_capacity) + " " + m + " " + getString(R.string.yard));
+        containerZise= (String) getIntent().getStringExtra("ContainerCapacity");
+        container_size.setText(getString(R.string.container_capacity) + " " + containerZise + " " + getString(R.string.yard));
 
 
         send_button.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +168,7 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
 
     private void log() {
         LogRequest logRequest = new LogRequest();
-        SharedPreferences sharedPreferences = getSharedPreferences(LoginScreen.API_TOKEN_SHARED, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginScreen.HAWAIT_SHARED_PREFRENSE, MODE_PRIVATE);
         String api_Token = (String) sharedPreferences.getString(LoginScreen.API_TOKEN, "");
 
         Toast.makeText(this, " api token " + api_Token, Toast.LENGTH_SHORT).show();
@@ -166,7 +176,12 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
         logRequest.setApiToken(api_Token);
 
         //TODO please change the company id to a variable
-        logRequest.setCompanyID("1");
+        SharedPreferences sharedPreferences2 = getSharedPreferences(CompanyIDDherd, MODE_PRIVATE);
+
+
+      String id= Integer.toString( sharedPreferences2.getInt("CompanyID",0));
+        logRequest.setCompanyID(id);
+
         logRequest.setType("order");
 
         RetrofitWebService.getService().getLog(logRequest).enqueue(new Callback<StatusResponse>() {
@@ -177,7 +192,7 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
                     Toast.makeText(SendOrder.this, "Success Request", Toast.LENGTH_SHORT).show();
 
                     sendMessage();
-                    sendSMSMessage();
+                   // sendSMSMessage();
                     //Intent intent = new Intent(SendOrder.this, DoYouServed.class);
                     //startActivity(intent);
 
@@ -209,13 +224,35 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
 
     private void sendMessage() {
 
-        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+        Intent[] intent=new Intent[2];
+
+/*        Intent smsIntent = new Intent(Intent.ACTION_VIEW);
         smsIntent.setData(Uri.parse("smsto:"));
         smsIntent.setType("vnd.android-dir/mms-sms");
         smsIntent.putExtra("address", new String("01234"));
         smsIntent.putExtra("sms_body", "Test ");
+glh
+        startActivity(smsIntent);*/
 
-        startActivity(smsIntent);
+        String containerNum=contianer_reguired.getText().toString();
+
+
+        intent[0]=new Intent(SendOrder.this,DoYouServed.class);
+
+        intent[1]= new Intent(Intent.ACTION_VIEW); //phoneNumber,containerZise,containerCost,containerColor,containerType;
+        intent[1].setData(Uri.parse("smsto:"));
+        intent[1].setType("vnd.android-dir/mms-sms");
+        intent[1].putExtra("address", new String(phoneNumber));
+        intent[1].putExtra("sms_body", "Container Detail : \n"+"\n \n Container Size : "+containerZise+"\n Container Cost : "+
+                containerCost+"\n"+" Continer Color : "+containerColor+"\n"+" Contianer Type :"+containerType+"\n Number of Containiars :"+containerNum+"\n"+
+                "\n \n Delivery Time : After "+days+" Days "+hours+" Hours "
+                +"\n \n \n Client Details : "+" Location : "+stBuilder+" \n ");
+
+
+
+        startActivities(intent);
+
+
 
 /*        SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage("01090885823", null, "hi form hawait", null, null);
@@ -229,7 +266,7 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
 
     }
 
-    protected void sendSMSMessage() {
+   /* protected void sendSMSMessage() {
 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
@@ -258,7 +295,7 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
                 }
             }
         }
-    }
+    }*/
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -284,7 +321,7 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
-                StringBuilder stBuilder = new StringBuilder();
+                 stBuilder = new StringBuilder();
                 String placename = String.format("%s", place.getName());
                 String latitude = String.valueOf(place.getLatLng().latitude);
                 String longitude = String.valueOf(place.getLatLng().longitude);
@@ -405,7 +442,7 @@ public class SendOrder extends AppCompatActivity implements GoogleApiClient.OnCo
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(mContext, Container_Detail.class);
+                        Intent intent = new Intent(mContext, Company_Detail.class);
                         mContext.startActivity(intent);
 
                     }

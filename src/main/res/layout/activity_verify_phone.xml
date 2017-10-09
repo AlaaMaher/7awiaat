@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -178,19 +178,16 @@
                 app:editText="@{verfiyPhone.pin5}"
 
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/pin6"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/pin4"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
+                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/pin6" />
             <EditText
                 android:id="@+id/pin6"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edittext"
                 android:inputType="number"
@@ -200,15 +197,17 @@
                 android:textAlignment="center"
                 android:textColor="#0F3D5E"
                 android:textSize="20sp"
-
                 android:textStyle="bold"
                 app:editText="@{verfiyPhone.pin6}"
+
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/pin5"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/pin5"
+                android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintHorizontal_bias="0.5" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -221,11 +220,11 @@
             android:drawablePadding="5dp"
             android:drawableStart="@drawable/ic_refresh"
             android:onClick="@{verfiyPhone::resendCode}"
+            app:editText="@{verfiyPhone.pin5}"
             android:text="@string/resende_code"
             android:textColor="#0F3D5E"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:editText="@{verfiyPhone.pin5}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 

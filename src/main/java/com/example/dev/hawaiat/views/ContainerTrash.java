@@ -77,22 +77,22 @@ public class ContainerTrash extends AppCompatActivity {
 
         List<ContainerTrash.Item> itemsList = new ArrayList<>();
         ContainerTrash.Item item = new ContainerTrash.Item();
-        item.setText("Container 10 Yard");
+        item.setText(String.valueOf((R.string.yard10)));
         item.setImgUrl("https://s.cafebazaar.ir/1/icons/com.limatech.limagapp_512x512.png");
         itemsList.add(item);
 
         item = new ContainerTrash.Item();
-        item.setText("Container 40 Yard");
+        item.setText(String.valueOf(R.string.yard15));
         item.setImgUrl("https://s.cafebazaar.ir/1/icons/com.limatech.limagapp_512x512.png");
         itemsList.add(item);
 
         item = new ContainerTrash.Item();
-        item.setText("Container 20 Yard");
+        item.setText(String.valueOf(R.string.yard10));
         item.setImgUrl("https://s.cafebazaar.ir/1/icons/com.limatech.limagapp_512x512.png");
         itemsList.add(item);
 
         item = new ContainerTrash.Item();
-        item.setText("Container 80 Yard");
+        item.setText(String.valueOf(R.string.yard20));
         item.setImgUrl("https://s.cafebazaar.ir/1/icons/com.limatech.limagapp_512x512.png");
         itemsList.add(item);
 
@@ -186,7 +186,7 @@ public class ContainerTrash extends AppCompatActivity {
         @Override
         public View getView(final int pos, View view, ViewGroup viewGroup) {
             view = getLayoutInflater().inflate(R.layout.item_layout, null);
-            ImageView icon = (ImageView) view.findViewById(R.id.imageView);
+            ImageView icon = (ImageView) view.findViewById(R.id.ImageIcon);
             CheckBox checkBox = view.findViewById(R.id.checkBox);
 
             checkBox.setChecked(false);
@@ -194,7 +194,7 @@ public class ContainerTrash extends AppCompatActivity {
             checkBox.setText(items.get(pos).getText());
 
             Picasso.with(view.getContext())
-                    .load(R.mipmap.ic_launcher)
+                    .load(R.drawable.logo1)
                     .into(icon);
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -218,8 +218,8 @@ public class ContainerTrash extends AppCompatActivity {
         String text;
         String imgUrl;
 
-        public String getText() {
-            return text;
+        public int getText() {
+            return Integer.parseInt(text);
         }
 
         public void setText(String text) {

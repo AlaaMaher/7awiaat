@@ -1,6 +1,7 @@
 package com.example.dev.hawaiat.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.dev.hawaiat.R;
 import com.example.dev.hawaiat.models.Company;
+import com.example.dev.hawaiat.views.Company_Detail;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -57,7 +59,7 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersAdapter.My
         return containerSizesList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView companyname, percentage;
         private RatingBar rate;
@@ -69,6 +71,19 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersAdapter.My
             percentage = (TextView) view.findViewById(R.id.percentage);
             logo = (ImageView) view.findViewById(R.id.logo);
             rate = (RatingBar) view.findViewById(R.id.rate);
+
+            view.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position=getAdapterPosition();
+
+         //  Toast.makeText(mContext," company id "+containerSizesList.get(position).getId(),Toast.LENGTH_SHORT).show();
+           Intent intent=new Intent(mContext, Company_Detail.class);
+           intent.putExtra("CompanyID",containerSizesList.get(position).getId());
+           mContext.startActivity(intent);
 
         }
     }

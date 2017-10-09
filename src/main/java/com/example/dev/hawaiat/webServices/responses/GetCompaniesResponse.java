@@ -2,13 +2,14 @@ package com.example.dev.hawaiat.webServices.responses;
 
 import com.example.dev.hawaiat.models.Company;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by ahmed on 24/09/17.
  */
 
-public class GetCompaniesResponse {
+public class GetCompaniesResponse implements Serializable{
     private int status;
     private List<Company> companies;
     private String ad;

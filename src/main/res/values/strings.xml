@@ -100,4 +100,8 @@
     <string name="all">All</string>
     <string name="search">Search</string>
     <string name="title_activity_place_picker">Map</string>
+
+    <string name="yard10">Container 10 Yard</string>
+    <string name="yard15">Container 15 Yard</string>
+    <string name="yard20">Container 20 Yard</string>
 </resources>

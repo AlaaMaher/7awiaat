@@ -8,6 +8,7 @@ import android.databinding.ObservableField;
 import android.widget.ImageView;
 
 import com.example.dev.hawaiat.BR;
+import com.example.dev.hawaiat.R;
 import com.example.dev.hawaiat.models.HeaderDrawerModel;
 import com.squareup.picasso.Picasso;
 
@@ -18,45 +19,45 @@ import com.squareup.picasso.Picasso;
 public class HeaderDrawerViewModel extends BaseObservable {
 
 
-    ObservableField<HeaderDrawerModel> headerDrawerModelObservableField = new ObservableField<HeaderDrawerModel>();
+    ObservableField<HeaderDrawerModel> headerDrawerModelObservableField=new ObservableField<HeaderDrawerModel>();
     Context context;
 
-    public HeaderDrawerViewModel(Context context) {
-        this.context = context;
-        HeaderDrawerModel headerDrawerModel = new HeaderDrawerModel();
+    public HeaderDrawerViewModel(Context context){
+        this.context=context;
+        HeaderDrawerModel headerDrawerModel=new HeaderDrawerModel();
 
         headerDrawerModelObservableField.set(headerDrawerModel);
 
     }
 
-    @BindingAdapter("app:imageResHeader")
-    public static void bindImage(ImageView view, String r) {
-        // view.setImageResource(r);
-
-        Picasso.with(view.getContext()).load(r).into(view);
-    }
-
     @Bindable
-    public String getName() {
+    public String getName(){
         return headerDrawerModelObservableField.get().getmName();
     }
 
-    public void setName(String name) {
-        HeaderDrawerModel headerDrawerModel = headerDrawerModelObservableField.get();
+    public void setName(String name){
+        HeaderDrawerModel headerDrawerModel=headerDrawerModelObservableField.get();
         headerDrawerModel.setmName(name);
         notifyPropertyChanged(BR.name);
     }
-
     @Bindable
-    public String getImage() {
+    public String getImage(){
         return headerDrawerModelObservableField.get().getNavImage();
     }
 
-    public void setImage(String image) {
-        HeaderDrawerModel headerDrawerModel = headerDrawerModelObservableField.get();
+    public void setImage(String image){
+        HeaderDrawerModel headerDrawerModel=headerDrawerModelObservableField.get();
         headerDrawerModel.setNavImage(image);
         notifyPropertyChanged(BR.image);
     }
+
+    @BindingAdapter("app:imageResHeader")
+    public static void bindImage(ImageView view, String r) {
+       // view.setImageResource(r);
+
+        Picasso.with(view.getContext()).load("https://haweyat.magdsoft.com/"+r).error(R.drawable.ic_empty_profile).into(view);
+    }
+
 
 
 }

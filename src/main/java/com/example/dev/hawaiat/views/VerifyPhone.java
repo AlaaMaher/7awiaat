@@ -8,6 +8,7 @@ import com.example.dev.hawaiat.R;
 import com.example.dev.hawaiat.databinding.ActivityVerifyPhoneBinding;
 import com.example.dev.hawaiat.viewModels.VerifyPhoneViewModel;
 
+
 public class VerifyPhone extends AppCompatActivity {
 
     ActivityVerifyPhoneBinding binding;
@@ -16,11 +17,11 @@ public class VerifyPhone extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_verify_phone);
 
-        String phoneNumber = getIntent().getStringExtra("phoneNumber");
+       String phoneNumber= getIntent().getStringExtra("phoneNumber");
 
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_verify_phone);
-        binding.setVerfiyPhone(new VerifyPhoneViewModel(this, phoneNumber));
+         binding= DataBindingUtil.setContentView(this,R.layout.activity_verify_phone);
+        binding.setVerfiyPhone(new VerifyPhoneViewModel(this,phoneNumber));
 
 
 

@@ -23,7 +23,7 @@ public class TestActivity extends AppCompatActivity {
 
 
         // Add ur activities here.
-        mActivities.put("MainActivity", MainActivity.class);
+        mActivities.put("MainActivity", LoginOrReg.class);
         mActivities.put("ContainersActivity", ContainerTrash.class);
         mActivities.put("RegisterActivity", RegisterActivity.class);
         mActivities.put("SplashActivity", SplashActivity.class);

@@ -1,5 +1,7 @@
 package com.example.dev.hawaiat.views;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
@@ -42,7 +44,7 @@ public class RatingScreen extends AppCompatActivity {
         Rating_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(RatingScreen.this, " go to container Screen ", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(RatingScreen.this, " go to container Screen ", Toast.LENGTH_SHORT).show();
 
 
                 rateWebService();
@@ -53,10 +55,18 @@ public class RatingScreen extends AppCompatActivity {
     }
 
     private void rateWebService() {
+        SharedPreferences sharedPreferences = getSharedPreferences(LoginScreen.HAWAIT_SHARED_PREFRENSE, MODE_PRIVATE);
+        String api_Token = (String) sharedPreferences.getString(LoginScreen.API_TOKEN, "");
+
+        SharedPreferences sharedPreferences2 = getSharedPreferences(Company_Detail.CompanyIDDherd, MODE_PRIVATE);
+        String company_id=Integer.toString( sharedPreferences2.getInt("CompanyID",0));
+       // String company_id = (String) sharedPreferences2.getString("CompanyID", "");
+
+
         RatingRequest ratingRequest = new RatingRequest();
         ratingRequest.setRate(Float.toString(ratingBar.getRating()));
-        ratingRequest.setApiToken("FFWrlVrMO0Kscs6UokrNzjXC4ftTIXf6q4oHtcXNqBDFNHfTBrOCsc4ypX4YnqehZp4Jwa");
-        ratingRequest.setCompanyID("123445678");
+        ratingRequest.setApiToken(api_Token);
+        ratingRequest.setCompanyID(company_id);
 
 
         RetrofitWebService.getService().rateCompany(ratingRequest).enqueue(new Callback<StatusResponse>() {
@@ -65,6 +75,7 @@ public class RatingScreen extends AppCompatActivity {
 
                 if (response.body().getStatus() == 200) {
                     Toast.makeText(RatingScreen.this, getString(R.string.loginSuc), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RatingScreen.this,HomeScreen.class));
                 } else if (response.body().getStatus() == 400) {
                     Toast.makeText(RatingScreen.this, "Undefined token", Toast.LENGTH_SHORT).show();
                 } else if (response.body().getStatus() == 403) {

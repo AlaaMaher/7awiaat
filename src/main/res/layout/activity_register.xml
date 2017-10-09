@@ -1,169 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout>
-
     <data>
-
         <variable
             name="userViewModel"
-            type="com.example.dev.hawaiat.viewModels.RegisterViewModel" />
+            type="com.example.dev.hawaiat.viewModels.RegisterViewModel"/>
     </data>
 
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.example.dev.hawaiat.views.RegisterActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        tools:context="com.example.dev.hawaiat.views.RegisterActivity">
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
+        <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:background="#0F3C5D">
 
-            <android.support.v7.widget.Toolbar
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#0F3C5D">
+                android:layout_height="match_parent">
 
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_back_copy" />
 
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_back_copy" />
+                <!--                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteY="0dp" />-->
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.Toolbar>
 
-                    <!--                <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="16dp"
-                        android:src="@drawable/logo"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_editor_absoluteY="0dp" />-->
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
-        </android.support.design.widget.AppBarLayout>
+    <ImageView
+        android:id="@+id/imageViewReg"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="#000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:layout_editor_absoluteY="50dp" />
 
-        <ImageView
-            android:id="@+id/imageViewReg"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:background="#000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            tools:layout_editor_absoluteY="50dp" />
+    <EditText
+        android:id="@+id/editTextReg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_phone"
+        android:ems="10"
+        android:text="@={userViewModel.mhoneNumber}"
+        android:gravity="center"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:textAlignment="center"
+        android:textColor="#0d3046"
+        android:textColorHint="#0d3046"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewReg" />
+    <!--android:textCursorDrawable="@drawable/cursor_color"-->
 
-        <EditText
-            android:id="@+id/editTextReg"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:drawablePadding="10dp"
-            android:drawableStart="@drawable/ic_phone"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="@string/phone"
-            android:inputType="phone"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"
-            android:text="@={userViewModel.mhoneNumber}"
-            android:textAlignment="center"
-            android:textColor="#0d3046"
-            android:textColorHint="#0d3046"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewReg" />
-        <!--android:textCursorDrawable="@drawable/cursor_color"-->
+    <EditText
+        android:id="@+id/editTextPassReg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:drawablePadding="15dp"
+        android:drawableStart="@drawable/ic_pass"
+        android:ems="10"
 
-        <EditText
-            android:id="@+id/editTextPassReg"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:drawablePadding="15dp"
-            android:drawableStart="@drawable/ic_pass"
-            android:ems="10"
+        android:gravity="center"
+        android:hint="@string/pass"
+        android:text="@={userViewModel.massword}"
+        android:inputType="textPassword"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:textAlignment="center"
+        android:textColor="#0d3046"
+        android:textColorHint="#0d3046"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextReg"
+        tools:layout_editor_absoluteX="-24dp" />
 
-            android:gravity="center"
-            android:hint="@string/pass"
-            android:inputType="textPassword"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"
-            android:text="@={userViewModel.massword}"
-            android:textAlignment="center"
-            android:textColor="#0d3046"
-            android:textColorHint="#0d3046"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextReg"
-            tools:layout_editor_absoluteX="-24dp" />
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:button="@drawable/check_box_image"
+        android:paddingBottom="5dp"
+        android:text="@string/agree"
+        android:textColor="#0d3046"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:checked="@={userViewModel.checked}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassReg" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:button="@drawable/check_box_image"
-            android:checked="@={userViewModel.checked}"
-            android:paddingBottom="5dp"
-            android:text="@string/agree"
-            android:textColor="#0d3046"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPassReg" />
+    <Button
+        android:id="@+id/register2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/login_button_background"
+        android:onClick="@{userViewModel::register}"
+        android:text="@string/register"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
-        <Button
-            android:id="@+id/register2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/login_button_background"
-            android:onClick="@{userViewModel::register}"
-            android:text="@string/register"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
-    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
 </layout>

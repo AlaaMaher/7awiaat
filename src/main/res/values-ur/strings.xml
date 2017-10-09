@@ -75,4 +75,7 @@
     <string name="container_price">قیمت</string>
     <string name="rail">SAR</string>
     <string name="contact_deligator">" رابطہ کمپنی سے رابطہ کریں"</string>
+    <string name="yard10">کنٹینر 10 یارڈ</string>
+    <string name="yard15">کنٹینر 15 یارڈ</string>
+    <string name="Yard20">کنٹینر 20 یارڈ</string>
 </resources>

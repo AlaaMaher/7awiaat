@@ -20,6 +20,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Created by medo on 13-Sep-17.
+ */
 
 public class RegisterViewModel extends BaseObservable {
 
@@ -79,9 +82,6 @@ public class RegisterViewModel extends BaseObservable {
     private void vailedatCheck() {
 
         User user = mTaskObservable.get();
-        if (user.isChecked()) {
-            Toast.makeText(ctx, " is checked ", Toast.LENGTH_SHORT).show();
-        }
 
     }
 
@@ -93,16 +93,17 @@ public class RegisterViewModel extends BaseObservable {
         } else if (getMassword().length() < 9) {
             Toast.makeText(ctx, " Password is too Short ", Toast.LENGTH_SHORT).show();
         } else if (getMhoneNumber() == null) {
-            Toast.makeText(ctx, " Please Enter Email ", Toast.LENGTH_SHORT).show();
-        } else if (!getChecked()) {
+            Toast.makeText(ctx, " Please Enter Phone Number ", Toast.LENGTH_SHORT).show();
+        }else if(!getChecked()){
             Toast.makeText(ctx, " Please Accept Conditions ", Toast.LENGTH_SHORT).show();
-        } else {
-            registerF();
+        }
+        else {
+           registerF();
         }
     }
 
     private void registerF() {
-        SignUp signUp = new SignUp();
+        SignUp signUp=new SignUp();
 
         signUp.setPhone(getMhoneNumber());
         signUp.setPassword(getMassword());
@@ -113,23 +114,24 @@ public class RegisterViewModel extends BaseObservable {
             public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
 
 
-                if (response.body().getStatus() == 200) {
-                    Toast.makeText(ctx, ctx.getResources().getString(R.string.regsuccess), Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(ctx, VerifyPhone.class);
-                    intent.putExtra("phoneNumber", getMhoneNumber());
+                if(response.body().getStatus()==200){
+                    Toast.makeText(ctx,ctx.getResources().getString(R.string.regsuccess), Toast.LENGTH_SHORT).show();
+
+                    Intent intent=new Intent(ctx, VerifyPhone.class);
+                    intent.putExtra("phoneNumber",getMhoneNumber());
                     ctx.startActivity(intent);
 
-                } else if (response.body().getStatus() == 400) {
+                }else if(response.body().getStatus()==400){
                     Toast.makeText(ctx, ctx.getResources().getString(R.string.regbefore), Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 403) {
+                }else if(response.body().getStatus()==403){
                     Toast.makeText(ctx, ctx.getResources().getString(R.string.enterAll), Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 404) {
+                }else if(response.body().getStatus()==404){
                     Toast.makeText(ctx, " Unknown error ! ", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 405) {
+                }else if(response.body().getStatus()==405){
                     Toast.makeText(ctx, ctx.getResources().getString(R.string.wrongPhone), Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 407) {
-                    Toast.makeText(ctx, ctx.getResources().getString(R.string.wrongPassword), Toast.LENGTH_SHORT).show();
+                }else if(response.body().getStatus()==407){
+                    Toast.makeText(ctx,  ctx.getResources().getString(R.string.wrongPassword), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -139,17 +141,18 @@ public class RegisterViewModel extends BaseObservable {
             @Override
             public void onFailure(Call<StatusResponse> call, Throwable t) {
 
-                Toast.makeText(ctx, " connection failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, " connection failed "+t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
+
 
 
     }
 
     public void vailidatePassword() {
         User user = mTaskObservable.get();
-        // Toast.makeText(ctx, " hi password " + user.getPassword() + " email " + user.getPhoneNamber(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(ctx, " hi password " + user.getPassword() + " email " + user.getPhoneNamber(), Toast.LENGTH_SHORT).show();
     }
 
 }

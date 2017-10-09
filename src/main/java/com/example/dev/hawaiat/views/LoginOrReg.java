@@ -74,24 +74,16 @@ public class LoginOrReg extends AppCompatActivity implements AdapterView.OnItemS
         items.add(getResources().getString(R.string.Arabic));
         items.add(getResources().getString(R.string.English));
         items.add(getResources().getString(R.string.Urdu));
+
+
+        adapter=new ArrayAdapter<CharSequence>(this,R.layout.spinner_item,getResources().getStringArray(R.array.spinnerItems));
+        spinner.setAdapter(adapter);
     }
 
     private void initView() {
         textLogin = (Button) findViewById(R.id.login);
         textReg = (Button) findViewById(R.id.Registeration);
         textView = (TextView) findViewById(R.id.textView);
-
-/*        spinner = (Spinner) findViewById(R.id.spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        spinner.setOnItemSelectedListener(this);
-        items = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.spinnerItems)));
-        adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, items);
-        spinner.setAdapter(adapter);
-        adapter.notifyDataSetChanged();*/
-
-
-        // sherdLanguageClass.loadLocale();
-        //adapter.notifyDataSetChanged();
     }
 
     public void loginOrReg(final View v) {
@@ -130,11 +122,15 @@ public class LoginOrReg extends AppCompatActivity implements AdapterView.OnItemS
                 lang = "ar";
                 Toast.makeText(this, " ar ", Toast.LENGTH_SHORT).show();
                 adapter.notifyDataSetChanged();
+                finish();
+                startActivity(getIntent());
                 break;
             case 2:
                 lang = "en";
                 Toast.makeText(this, " en ", Toast.LENGTH_SHORT).show();
                 adapter.notifyDataSetChanged();
+                finish();
+                startActivity(getIntent());
                 break;
 
             case 3:
@@ -143,20 +139,17 @@ public class LoginOrReg extends AppCompatActivity implements AdapterView.OnItemS
                 adapter.notifyDataSetChanged();
                 finish();
                 startActivity(getIntent());
-
-
                 break;
         }
 
         sherdLanguageClass.changeLang(lang);
         adapter.notifyDataSetChanged();
-        //   updateTexts();
+
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
         adapter.notifyDataSetChanged();
     }
 }

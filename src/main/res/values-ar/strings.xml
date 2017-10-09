@@ -32,7 +32,7 @@
     <string name="logout">تسجيل الخروج</string>
     <string name="about_us">عن التطبيق</string>
     <string name="email">الايميل</string>
-    <string name="phone">ارقام الجوال</string>
+    <string name="phone">رقم الجوال</string>
     <string name="container_size">مقاس حاوية 10 يارد</string>
     <string name="contianer_number">عدد الحاوبات المطلوبة</string>
     <string name="location">الموقع</string>
@@ -77,4 +77,7 @@
     <string name="container_price">السعر</string>
     <string name="rail">ريال</string>
     <string name="contact_deligator">الاتصال بمندوب الشركة</string>
+    <string name="yard10">حاويات 10 ياردة</string>
+    <string name="yard15">حاويات 15 ياردة</string>
+    <string name="Yard20">حاويات 20 يارده</string>
 </resources>

@@ -55,9 +55,11 @@
             android:label="@string/app_name" />
         <activity android:name=".views.MainActivity" />
         <activity android:name=".views.Resetpassword" />
+        <activity android:name=".views.ContainerRest"/>
+        <activity android:name=".views.ContainerTrash"/>
 
         <activity
-            android:name=".views.SplashActivity"
+            android:name=".views.TestActivity"
             android:theme="@style/AppTheme">
 
             <intent-filter>
@@ -119,7 +121,7 @@
             android:name=".views.ChangeLanguage"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:screenOrientation="portrait" />
-        <activity android:name=".views.Container_Detail" />
+        <activity android:name=".views.Company_Detail" />
 
         <activity
             android:name=".views.ForgetPassword"

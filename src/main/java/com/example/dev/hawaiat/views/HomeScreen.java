@@ -28,9 +28,7 @@ import com.example.dev.hawaiat.databinding.NavHeaderBinding;
 import com.example.dev.hawaiat.viewModels.HeaderDrawerViewModel;
 import com.example.dev.hawaiat.viewModels.LoginViewModel;
 import com.example.dev.hawaiat.webServices.RetrofitWebService;
-import com.example.dev.hawaiat.webServices.request.CompaniesRequest;
 import com.example.dev.hawaiat.webServices.request.LoginRequest;
-import com.example.dev.hawaiat.webServices.responses.CompaniesResponse;
 import com.example.dev.hawaiat.webServices.responses.LoginResponse;
 
 import retrofit2.Call;
@@ -43,24 +41,24 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     // ========================== static images for view pagers================
     // private int images[] = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3, R.drawable.image_4};
     // private int images2[] = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3, R.drawable.image_4};
-    LoginResponse loginResponse;
-
+    private LoginResponse loginResponse;
     private LoginViewModel loginViewModel;
     private ViewPager viewPager;
     private ViewPager viewPager2;
-
     private MyCustomPagerAdapter myCustomPagerAdapter;
     private MyCustomPagerAdapter myCustomPagerAdapter2;
-
     private int tab = 0;
     private int tab2 = 0;
-    private SherdLanguageClass sherdLanguageClass;
+    //private SherdLanguageClass sherdLanguageClass;
     private Button tramimButton, nfyaitButton;
     private ImageView leftNav, rightNav, leftNav2, rightNav2;
-
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
+    public static String API_TOKEN_SHARED = "apiToken_shared";
+    public static String API_TOKEN = "apiToken";
+
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,51 +66,35 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         setContentView(R.layout.activity_home_screen);
 
 
+
+        //=================================== for the header of the side menue============================
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         ////================================= for the web serviced intent =================================
 
 
+        //=================================== for the home screen web services============================
         loginResponse = new LoginResponse();
         login();
-        //     Intent intent = getIntent();
-        //    final LoginResponse loginResponse = (LoginResponse) intent.getSerializableExtra("loginRes");
 
+        //=================================== for the upper slider and lower slider=======================
         try {
-            Log.d("onResponse2", loginResponse.getUpperSlider().get(0));
-            Log.d("onResponse2", loginResponse.getProfile().getApiToken());
-            if (loginResponse.getProfile().getName() != null) {
-                Log.d("onResponse3", loginResponse.getProfile().getName());
-            }
-
-            Log.d("Res", loginResponse.toString());
-        } catch (Exception e) {
-
-        }
-
-        try {
-            sherdLanguageClass = new SherdLanguageClass(getApplication());
-
             viewPager = (ViewPager) findViewById(R.id.pager);
-
-
-            // viewPager.setAdapter(myCustomPagerAdapter);
-
             viewPager2 = (ViewPager) findViewById(R.id.pager2);
-
         } catch (Exception e) {
 
         }
 
 
-        //================================================ swaping arrow =======================
+        //================================================ swaping arrow for slider=======================
         leftNav = (ImageView) findViewById(R.id.imgageleft);
         rightNav = (ImageView) findViewById(R.id.imageright);
-
         leftNav2 = (ImageView) findViewById(R.id.imgageleft2);
         rightNav2 = (ImageView) findViewById(R.id.imageright2);
 
 
         try {
-
 
             // Images left navigation
             leftNav.setOnClickListener(new View.OnClickListener() {
@@ -138,13 +120,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         }
         try {
             if (tab == 0) {
-
                 leftNav.setVisibility(View.GONE);
-                Toast.makeText(HomeScreen.this, "from img left", Toast.LENGTH_SHORT).show();
             } else {
                 leftNav.setVisibility(View.VISIBLE);
-                //  rightNav.setVisibility(View.VISIBLE);
-
             }
         } catch (Exception e) {
             Log.e("error in onclick ", e.getMessage());
@@ -156,13 +134,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             rightNav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // leftNav.setVisibility(View.VISIBLE);
-                    //  tab = viewPager.getCurrentItem();
                     tab++;
                     viewPager.setCurrentItem(tab);
                     myCustomPagerAdapter.setLeftIconViability(leftNav, tab);
                     myCustomPagerAdapter.setRightIconViability(rightNav, tab);
-
                 }
             });
         } catch (Exception e) {
@@ -173,22 +148,18 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         //======================================== for the second view pager=====================================================
 
         try {
-
             // Images left navigation
             leftNav2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tab2 = viewPager2.getCurrentItem();
-
                     rightNav2.setVisibility(View.INVISIBLE);
                     if (tab2 > 0) {
                         tab2--;
                         viewPager2.setCurrentItem(tab2);
                     } else if (tab2 == 0) {
-
                         viewPager2.setCurrentItem(tab2);
                     }
-
                     myCustomPagerAdapter2.setLeftIconViability(leftNav2, tab2);
                     myCustomPagerAdapter2.setRightIconViability(rightNav2, tab2);
                 }
@@ -197,28 +168,20 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             Log.e("error in onclick ", e.getMessage());
         }
         try {
-
             if (tab2 == 0) {
-
                 leftNav2.setVisibility(View.GONE);
-                Toast.makeText(HomeScreen.this, "from img left", Toast.LENGTH_SHORT).show();
             } else {
                 leftNav2.setVisibility(View.VISIBLE);
-                //  rightNav.setVisibility(View.VISIBLE);
-
             }
         } catch (Exception e) {
             Log.e("error in onclick ", e.getMessage());
         }
 
         try {
-
             // Images right navigatin
             rightNav2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // leftNav.setVisibility(View.VISIBLE);
-                    //  tab = viewPager.getCurrentItem();
                     tab2++;
                     viewPager2.setCurrentItem(tab2);
                     myCustomPagerAdapter2.setLeftIconViability(leftNav2, tab2);
@@ -239,42 +202,20 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         tramimButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String companytype = "rest";
-                Intent intent = new Intent(HomeScreen.this, ContainerRest.class);
-                intent.putExtra("rest", companytype);
-                startActivity(intent);
-                Toast.makeText(HomeScreen.this, " hawait tramim", Toast.LENGTH_SHORT).show();
-
-                startActivity(new Intent(HomeScreen.this, Container_Detail.class));
-
-                CompaniesRequest companiesRequest = new CompaniesRequest();
-                companiesRequest.setApiToken(loginResponse.getProfile().getApiToken());
-                companiesRequest.setContainerType("rest");
-
-                CompanyApi(companiesRequest);
-
-
+                startActivity(new Intent(HomeScreen.this, ContainerRest.class));
             }
         });
 
         nfyaitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String type = "trash";
-                Intent intent = new Intent(getApplicationContext(), ContainerTrash.class);
-                intent.putExtra("trash", type);
-                Toast.makeText(HomeScreen.this, " hawait nfyat", Toast.LENGTH_SHORT).show();
-
-                CompaniesRequest companiesRequest = new CompaniesRequest();
-                companiesRequest.setApiToken(loginResponse.getProfile().getApiToken());
-                companiesRequest.setContainerType("trash");
-
-                CompanyApi(companiesRequest);
-
+                startActivity(new Intent(HomeScreen.this, ContainerTrash.class));
             }
         });
 
+
+
+        ///================================= for the toolbar================================================================
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -286,16 +227,15 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         View headerview = navigationView.getHeaderView(0);
-
         ConstraintLayout header = (ConstraintLayout) headerview.findViewById(R.id.header);
+
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(HomeScreen.this, " Edit Profirle ", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomeScreen.this, ProfileScreen.class));
             }
         });
 
@@ -304,10 +244,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         initNavigationDrawer();
         toggle.syncState();
     }
-
     private void login() {
-        SharedPreferences sharedPreferences = getSharedPreferences("EmailAndPaswword", Context.MODE_PRIVATE);
 
+
+        SharedPreferences sharedPreferences = getSharedPreferences("PhoneAndPaswword", Context.MODE_PRIVATE);
         String phone = sharedPreferences.getString("phone", "");
         String pass = sharedPreferences.getString("pass", "");
 
@@ -315,13 +255,11 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         loginRequest.setPhone(phone);
         loginRequest.setPassword(pass);
 
-
         RetrofitWebService.getService().login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 if (response.body().getStatus() == 200) {
-
 
                     loginResponse = response.body();
                     myCustomPagerAdapter = new MyCustomPagerAdapter(HomeScreen.this, loginResponse.getUpperSlider());
@@ -329,8 +267,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                     myCustomPagerAdapter2 = new MyCustomPagerAdapter(HomeScreen.this, loginResponse.getLowerSlider());
                     viewPager2.setAdapter(myCustomPagerAdapter2);
 
-                    Toast.makeText(HomeScreen.this, " success ", Toast.LENGTH_SHORT).show();
 
+                    saveApiToken();
 
                 } else if (response.body().getStatus() == 403) {
                     Toast.makeText(HomeScreen.this, " Invalid request, because of missing requirements. ", Toast.LENGTH_SHORT).show();
@@ -358,38 +296,47 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
-    private void CompanyApi(CompaniesRequest companiesRequest) {
-        RetrofitWebService.getService().getCompanies(companiesRequest).enqueue(new Callback<CompaniesResponse>() {
-            @Override
-            public void onResponse(Call<CompaniesResponse> call, Response<CompaniesResponse> response) {
+    private void saveApiToken() {
 
-                CompaniesResponse companiesResponse = response.body();
+        SharedPreferences sharedPreferences = getSharedPreferences(API_TOKEN_SHARED, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String s = sharedPreferences.getString(API_TOKEN, "");
 
-                if (response.body().getStatus() == 200) {
-                    Toast.makeText(HomeScreen.this, "Success request", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 300) {
-                    Toast.makeText(HomeScreen.this, "Success request, but no results found.", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 400) {
-                    Toast.makeText(HomeScreen.this, "Invalid or undefined apiToken", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 403) {
-                    Toast.makeText(HomeScreen.this, "Invalid request, because of missing requirements.", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 404) {
-                    Toast.makeText(HomeScreen.this, "unknown error", Toast.LENGTH_SHORT).show();
-                } else if (response.body().getStatus() == 406) {
-                    Toast.makeText(HomeScreen.this, "Invalid containerType", Toast.LENGTH_SHORT).show();
-                }
+        editor.putString(API_TOKEN, loginResponse.getProfile().getApiToken());
+        editor.commit();
 
-                Log.d("home", companiesResponse.getCompanies().get(0).getName());
 
+
+
+
+        //============================================= for mvvm of  header of navigation drawer ==========================
+
+        NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.nav_header, navigationView, true);
+
+        /*View headerView = LayoutInflater.from(this).inflate(R.layout.nav_header, navigationView, false);
+        navigationView.addHeaderView(headerView);*/
+
+        HeaderDrawerViewModel headerViewModel = new HeaderDrawerViewModel(this);
+
+        //   headerViewModel.setImage("http://mirrors.creativecommons.org/presskit/icons/share.large.png");
+        //   headerViewModel.setName("Mohamed Tony");
+        try {
+            if (loginResponse.getProfile().getName() != null) {
+                headerViewModel.setName(loginResponse.getProfile().getName());
             }
-
-            @Override
-            public void onFailure(Call<CompaniesResponse> call, Throwable t) {
-
-                Toast.makeText(HomeScreen.this, " connection failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            if (loginResponse.getProfile().getPhoto() != null) {
+                headerViewModel.setImage(loginResponse.getProfile().getPhoto());
             }
-        });
+            navHeaderBinding.setHeaderViewModel(headerViewModel);
+        }catch (Exception e){
+            Log.e(" Error ",e.getMessage());
+        }
+
+
+
+
     }
+
 
     //========================for the side menue(navigation drawer))========================================================================================
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -424,24 +371,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     public void initNavigationDrawer() {
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-
-        //============================================= for mvvm of  header of navigation drawer ==========================
-
-        NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.nav_header, navigationView, true);
-
-        /*View headerView = LayoutInflater.from(this).inflate(R.layout.nav_header, navigationView, false);
-        navigationView.addHeaderView(headerView);*/
-
-        HeaderDrawerViewModel headerViewModel = new HeaderDrawerViewModel(this);
-
-        headerViewModel.setImage("http://mirrors.creativecommons.org/presskit/icons/share.large.png");
-        headerViewModel.setName("Mohamed Tony");
-
-        navHeaderBinding.setHeaderViewModel(headerViewModel);
-
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -458,31 +387,22 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                         break;
                     case R.id.it_contact:
                         Toast.makeText(getApplicationContext(), "Contact Us", Toast.LENGTH_SHORT).show();
-
-                        // startActivity(new Intent(HomeActivity.this,ContactUsActivity.class));
+                        startActivity(new Intent(HomeScreen.this, ContactUs.class));
                         drawer.closeDrawers();
                         break;
                     case R.id.it_about:
-                        // startActivity(new Intent(HomeActivity.this,AboutUsActivity.class));
-
                         Toast.makeText(getApplicationContext(), "About", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(HomeScreen.this, AboutUs.class));
                         drawer.closeDrawers();
                         break;
 
                     case R.id.it_logout:
                         startActivity(new Intent(HomeScreen.this, LoginScreen.class));
                         finish();
-
                 }
                 return true;
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        sherdLanguageClass.loadLocale();
     }
 
     @Override
